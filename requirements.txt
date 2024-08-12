@@ -1,0 +1,7 @@
+pypdfium2
+opencv-python
+pytesseract
+nltk
+paddleocr
+paddlepaddle
+reportlab
