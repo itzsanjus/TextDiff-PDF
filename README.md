@@ -15,9 +15,8 @@ The PDF Comparison Tool is a web application that allows users to upload two PDF
 
 ### Prerequisites
 
-- Python 3.x
-- Flask
-- PyPDF2
+- `Python 3.x`
+- `Flask`
 - `pytesseract`
 
 ### Installation
