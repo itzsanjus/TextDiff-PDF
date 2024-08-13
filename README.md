@@ -32,6 +32,11 @@ The PDF Comparison Tool is a web application that allows users to upload two PDF
    python -m venv venv
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 
+NLTK 'punkt' should also be present in the environment. So, the following code should run before starting the application in the same environment.
+   ```bash
+   import nltk
+   nltk.download('punkt')
+```
 3. **Install Tesseract-OCR:**
 
    ```bash
@@ -39,7 +44,7 @@ The PDF Comparison Tool is a web application that allows users to upload two PDF
    
 4. **Prepare the Application:**
 
-   Ensure that the utils.py file with the necessary utility functions (compare_sentences and generate_pdf) is in the same directory as app.py.
+   Ensure that the utils.py file with the necessary utility functions is in the same directory as app.py.
 
 5. **Run the Application:**
 
