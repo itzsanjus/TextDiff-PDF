@@ -1,3 +1,4 @@
+import hashlib
 import pypdfium2 as pdfium
 from io import BytesIO
 from PIL import Image
@@ -5,6 +6,21 @@ from pytesseract import image_to_string
 import re
 import difflib
 from nltk import sent_tokenize
+
+def compute_pdf_hash(pdf_file):
+    pdf_bytes = pdf_file.read()
+
+    hash_object = hashlib.sha256(pdf_bytes)
+
+    return hash_object.hexdigest()
+
+def compare_pdfs(pdf_file1, pdf_file2) -> bool:
+    # Compute hashes for both PDF files
+    hash1 = compute_pdf_hash(pdf_file1)
+    hash2 = compute_pdf_hash(pdf_file2)
+
+    return hash1 == hash2
+
 
 
 def convert_pdf_to_images(file_path, scale=300/72):
@@ -29,6 +45,20 @@ def convert_pdf_to_images(file_path, scale=300/72):
 
     return list_final_images
 
+def length_match(text1, text2, tolerance=0.2):
+
+    len1 = len(text1)
+    len2 = len(text2)
+    
+    # Handle cases where one or both texts might be empty
+    if len1 == 0 or len2 == 0:
+        return False
+    
+    # Calculate the ratio of the lengths
+    length_ratio = min(len1, len2) / max(len1, len2)
+    
+    # Return True if the ratio is within the tolerance, else False
+    return length_ratio >= (1 - tolerance)
 
 def extract_text_with_pytesseract(list_dict_final_images):
 
@@ -42,11 +72,6 @@ def extract_text_with_pytesseract(list_dict_final_images):
         image_content.append(raw_text)
 
     return "\n".join(image_content)
-
-def ocr(pdf_path):
-    images = convert_pdf_to_images(pdf_path)
-    text = extract_text_with_pytesseract(images)
-    return text
 
 def split_into_sentences(text):
      # Define a regex pattern to match the tokens you want to remove

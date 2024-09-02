@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #eef2f7;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -52,38 +52,56 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
-footer {
-    background-color: #333333;
-    color: #ffffff;
-    padding: 20px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-}
-
-footer p {
-    margin: 0;
-    font-size: 14px;
-}
-
-footer a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
+        .flash-messages {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <h1>Find Modifications in PDF</h1>
+
+        <!-- Flash messages section -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+
         <form method="post" enctype="multipart/form-data">
             <label for="file1">Upload Original PDF:</label>
             <input type="file" id="file1" name="file1" accept="application/pdf" required>
@@ -95,8 +113,9 @@ footer a:hover {
         </form>
     </div>
 </body>
+
 <footer>
-  <p>Developer: Sanju Sarkar</p>
-  <p><a href="mailto:sanjusarkar44@hotmail.com">sanjusarkar44@hotmail.com</a></p>
+    <p>Developer: Sanju Sarkar</p>
+    <p><a href="mailto:sanjusarkar44@hotmail.com">sanjusarkar44@hotmail.com</a></p>
 </footer>
 </html>
