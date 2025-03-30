@@ -1,8 +1,8 @@
-# PDF Comparison Tool
+# TextDiff-PDF
 
 ## Overview
 
-The PDF Comparison Tool is a web application that allows users to upload two PDF files (an original and a modified), compares the text content from both files, and generates a PDF report with the comparison results. The tool highlights differences, modifications, additions, and deletions between the two documents.
+The TextDiff-PDF is a web application that allows users to upload two PDF files (an original and a modified), compares the text content from both files, and generates a PDF report with the comparison results. The tool highlights differences, modifications, additions, and deletions between the two documents.
 
 ## Features
 
